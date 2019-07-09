@@ -44,6 +44,12 @@ function CityWeatherCard(props) {
     });
   }, [city]);
 
+  const refreshWeatherData = () => {
+    GetCityWeather(city.name).then((response) => {
+      setWeather(response);
+    });
+  }
+
   return (
     <Card className={classes.card}>
       <div className={classes.details}>
@@ -51,7 +57,7 @@ function CityWeatherCard(props) {
           <Typography variant="h4">{weather.name}<LocationCity /></Typography>
           <Typography variant="h6" color="textSecondary">
             Temp: {weather.main && weather.main.temp}         
-             <IconButton aria-label="Refresh"> <Refresh />
+             <IconButton aria-label="Refresh" onClick={refreshWeatherData}> <Refresh />
             </IconButton>
           </Typography>
           <Typography variant="h6" color="textSecondary">
